@@ -25,10 +25,10 @@ terraform {
   required_version = ">= 1.2.0"
 
   backend "s3" {
-    bucket         = "autodesk-project" 
-    key            = "terraform.tfstate"  
-    region         = "us-east-1"            
-    encrypt        = true
+    bucket  = "autodesk-project"
+    key     = "terraform.tfstate"
+    region  = "us-east-1"
+    encrypt = true
   }
 }
 

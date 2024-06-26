@@ -33,9 +33,9 @@ resource "aws_ecs_task_definition" "main" {
   execution_role_arn       = aws_iam_role.ECSTaskExecutionRole.arn
   task_role_arn            = aws_iam_role.ECSTaskExecutionRole.arn
   container_definitions = jsonencode([{
-    name        = "${var.config.projectName}-container-${var.config.environment}"
-    image       = "${var.image_url}"
-    essential   = var.essential
+    name      = "${var.config.projectName}-container-${var.config.environment}"
+    image     = "${var.image_url}"
+    essential = var.essential
     environment = [{
       name  = "environment"
       value = "test"
@@ -66,7 +66,7 @@ resource "aws_ecs_service" "main" {
     assign_public_ip = true
   }
 
-  load_balancer {                                              
+  load_balancer {
     target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:590183754275:targetgroup/autodesk-tg/c3fec6fe1a2ac97f"
     container_name   = "${var.config.projectName}-container-${var.config.environment}"
     container_port   = var.container_port

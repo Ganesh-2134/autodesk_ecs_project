@@ -1,12 +1,12 @@
-variable "aws_access_key"{
+variable "aws_access_key" {
   description = "AWS access key"
-  type = string
-  default= ""
+  type        = string
+  default     = ""
 }
-variable "aws_secret_key"{
+variable "aws_secret_key" {
   description = "AWS secret key"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 variable "config" {
   type = object({
@@ -95,7 +95,7 @@ variable "image_url" {
 /*variable "image" {
   type    = string
   default = "353211646521.dkr.ecr.us-east-1.amazonaws.com"
-}*/ 
+}*/
 variable "name_prefix" {
   description = "Name Prefix"
   type        = string
