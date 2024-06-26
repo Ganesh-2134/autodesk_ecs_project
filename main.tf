@@ -49,7 +49,7 @@ resource "aws_ecs_task_definition" "main" {
       logDriver = "awslogs"
       options = {
         "awslogs-group"         = "/ecs/${var.config.projectName}-logs"
-        "awslogs-region"        = " us-east-1"
+        "awslogs-region"        = "us-east-1"
         "awslogs-stream-prefix" = "ecs"
       }
     }
