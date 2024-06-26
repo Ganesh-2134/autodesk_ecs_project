@@ -67,7 +67,7 @@ resource "aws_ecs_service" "main" {
   }
 
   load_balancer {
-    target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:590183754275:targetgroup/autodesk-tg/c3fec6fe1a2ac97f"
+    target_group_arn = aws_lb_target_group.main.arn
     container_name   = "${var.config.projectName}-container-${var.config.environment}"
     container_port   = var.container_port
   }
