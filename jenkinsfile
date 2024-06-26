@@ -1,5 +1,10 @@
-pipeline {
-    agent any
+pipeline{
+    agent any 
+    parameters{
+        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
+        choice(name: 'action', choices: ['apply', 'destroy'], description: 'select the action to perform')
+    }
+    
 
     environment {
         AWS_ACCESS_KEY_ID   = credentials('aws-access-key-id')
@@ -30,12 +35,28 @@ pipeline {
         }
         stage ("terrafrom plan") {
             steps {
-                sh 'terraform plan '
+                sh 'terraform plan -out tfplan'
+                sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
-        stage ("terraform apply") {
+        stage ("Apply / Destroy") {
             steps {
-                sh 'terraform apply --auto-approve'
+               script{
+                 if(params.action == 'apply') {
+                    if(!params.autoApprove){
+                       def plan = readFile 'tfplan.txt'
+                       input message: "Do you want to apply the plan"
+                       parameters : [text(name: 'plan', description: 'please review the plan', defaultValue: plan)]
+                    }
+                    sh 'terraform ${action} -input=false tfplan'
+                 } else if (params.action == 'destroy'){
+                    sh 'terraform ${action} --auto-approve'
+                 } else {
+                     error "Invalid action selected, please choose either 'apply' or 'destroy'."
+                 }
+
+                 
+               }
             }
         }
     }
