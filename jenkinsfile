@@ -10,32 +10,37 @@ pipeline {
     stages {
         stage ("checkout from GIT") {
             steps {
-                git branch: 'main', url: 'https://github.com/Ganesh-2134/autodesk_ecs_project.git'
+                git branch: 'main', url: 'https://github.com/shkr04041996/terraformcode_ecs.git'
             }
         }
-        stage ("terraform init") {
-            steps {
-                sh 'terraform init'
-            }
-        }
-        stage ("terraform fmt") {
-            steps {
-                sh 'terraform fmt'
-            }
-        }
+        // stage ("terraform init") {
+        //     steps {
+        //         sh 'terraform init'
+        //     }
+        // }
+        // stage ("terraform fmt") {
+        //     steps {
+        //         sh 'terraform fmt'
+        //     }
+        // }
         // stage ("terraform validate") {
         //     steps {
         //         sh 'terraform validate'
         //     }
         // }
-        stage ("terrafrom plan") {
+        // stage ("terrafrom plan") {
+        //     steps {
+        //         sh 'terraform plan '
+        //     }
+        // }
+        // stage ("terraform apply") {
+        //     steps {
+        //         sh 'terraform apply --auto-approve'
+        //     }
+        // }
+        stage ("terrafrom destroy") {
             steps {
-                sh 'terraform plan '
-            }
-        }
-        stage ("terraform apply") {
-            steps {
-                sh 'terraform apply --auto-approve'
+                sh 'terraform destroy '
             }
         }
     }
