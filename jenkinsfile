@@ -13,11 +13,11 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/shkr04041996/terraformcode_ecs.git'
             }
         }
-        // stage ("terraform init") {
-        //     steps {
-        //         sh 'terraform init'
-        //     }
-        // }
+        stage ("terraform init") {
+            steps {
+                sh 'terraform init'
+            }
+        }
         // stage ("terraform fmt") {
         //     steps {
         //         sh 'terraform fmt'
