@@ -18,8 +18,8 @@ variable "config" {
   default = {
     environment = "test"
     region      = "us-east-1"
-    profile     = "Ganesh_M"
-    projectName = "autodesk_ecr-project" #updated
+    profile     = "Ganesh-M"
+    projectName = "autodesk-ecr-project" #updated
   }
 }
 
@@ -100,4 +100,17 @@ variable "name_prefix" {
   description = "Name Prefix"
   type        = string
   default     = "fw"
+}
+
+
+variable "certificate_arn" {
+  description = "The ARN of the SSL certificate"
+  type        = string
+  default     = ""
+}
+
+variable "vpc_id" {
+  description = "The ID of the VPC"
+  type        = string
+  default     = "vpc-0edefadb25bdcbeab"
 }
