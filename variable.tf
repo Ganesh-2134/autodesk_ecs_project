@@ -33,11 +33,11 @@ variable "subnetIds" {
 }
 variable "container_port" {
   type    = number
-  default = 3000
+  default = 8000
 }
 variable "hostPort" {
   type    = number
-  default = 3000
+  default = 8000
 }
 variable "protocol" {
   type    = string

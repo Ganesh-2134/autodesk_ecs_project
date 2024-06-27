@@ -14,7 +14,7 @@ resource "aws_lb" "main" {
 
 resource "aws_lb_target_group" "main" {
   name     = "${var.config.projectName}-tg-${var.config.environment}"
-  port     = 80
+  port     = 8000
   protocol = "HTTP"
   vpc_id   = var.vpc_id
   target_type = "ip"  # or "ip\_address"
